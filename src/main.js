@@ -262,7 +262,7 @@ killZombieBtn.onclick = async () => {
     showCustomAlert(`💀 ${xpEarned} XP rewarded!`, 1000);
 
     // Reset XP after rewarding
-    xpEarned = 0;
+    // xpEarned = 0;
     updateKillButton();
 
     // Update the displayed XP after reward
