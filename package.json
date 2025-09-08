@@ -1,0 +1,20 @@
+{
+  "name": "zombifi-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.1.2"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.87.1",
+    "@wagmi/core": "^2.20.3",
+    "viem": "^2.37.4",
+    "wagmi": "^2.16.9"
+  }
+}
