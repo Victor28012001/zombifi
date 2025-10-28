@@ -1,0 +1,29 @@
+{
+  "name": "Unease - Hospital Lobby",
+  "description": "Introduction, secure emergency elevator access",
+  "metadata": {
+    "startRoom": [-10, 0, 0],
+    "elevatorAccess": true,
+    "mapDensity": "high"
+  },
+  "floorTiles": {
+    "grid": {
+      "start": [-10, 0, -10],
+      "end": [10, 0, 10],
+      "spacing": [2, 2]
+    }
+  },
+  "rooms": [
+    {
+      "id": "room",
+      "type": "room",
+      "grid": {
+        "start": [-10, 0, -10],
+        "end": [10, 0, 10],
+        "spacing": [2, 2]
+      },
+      "modelKey": "abandonedRoom"
+    }
+  ],
+  "target": [-2, 0, 0]
+}

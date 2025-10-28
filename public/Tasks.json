@@ -1,0 +1,1108 @@
+{
+    "floors": [
+        {
+            "floor": 1,
+            "name": "Administrative Offices",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Locate and recover Glady’s ID badge from the security desk.",
+                        "desc": "Infiltrate the admin floor and secure Glady’s lost ID badge without alerting guards.",
+                        "imageUrl": "../assets/images/tasks/level1/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Find the security desk location",
+                            "desc": "Locate the main security hub in the admin section.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Avoid or neutralize patrolling guards",
+                            "desc": "Sneak past or disable enemy guards to reach the desk.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Search desk drawers",
+                            "desc": "Thoroughly search the drawers for Glady’s badge.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Verify badge authenticity",
+                            "desc": "Use scanner to confirm badge is genuine.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Mark badge location",
+                            "desc": "Log the badge’s position on your map.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Report retrieval",
+                            "desc": "Confirm retrieval to Agency via radio.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Secure and prepare for extraction",
+                            "desc": "Keep badge safe until exit.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Download HR server logs from a terminal in the admin office.",
+                        "desc": "Extract HR server logs without leaving a trace.",
+                        "imageUrl": "../assets/images/tasks/level1/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate admin terminal",
+                            "desc": "Find the secure HR terminal.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Bypass login",
+                            "desc": "Use hacking tools to break through credentials.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Download logs",
+                            "desc": "Copy HR server logs to portable drive.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Avoid alarms",
+                            "desc": "Stay quiet during the download.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Encrypt files",
+                            "desc": "Protect the stolen HR data.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Transfer files",
+                            "desc": "Send files to Corporation uplink.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Clear traces",
+                            "desc": "Wipe any activity logs.",
+                            "imageUrl": "../assets/images/tasks/level1/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Destroy all visitor logs manually (burn paper files).",
+                        "desc": "Eliminate visitor logs to erase trace of allies.",
+                        "imageUrl": "../assets/images/tasks/level1/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Find storage room",
+                            "desc": "Locate where physical logs are stored.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Pick or force entry",
+                            "desc": "Break into the logs room quietly.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Locate visitor files",
+                            "desc": "Identify all log files.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Burn logs",
+                            "desc": "Destroy files using fire.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Control flames",
+                            "desc": "Keep fire from spreading.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Clean ashes",
+                            "desc": "Remove evidence after burning.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Escape unseen",
+                            "desc": "Evade patrols during exit.",
+                            "imageUrl": "../assets/images/tasks/level1/Agency/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 2,
+            "name": "Security Control",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Override surveillance system to create blind spots.",
+                        "desc": "Disable cameras temporarily to cover your infiltration routes.",
+                        "imageUrl": "../assets/images/tasks/level2/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate security room",
+                            "desc": "Find the main surveillance hub.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Identify blind spot zones",
+                            "desc": "Pick areas to cut off cameras.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Bypass door lock",
+                            "desc": "Hack into the secure room entrance.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Disable alarms",
+                            "desc": "Prevent triggering alerts while working.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Loop camera feeds",
+                            "desc": "Replay recordings to mask actions.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Confirm blind spots",
+                            "desc": "Ensure your planned path is clear.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit discreetly",
+                            "desc": "Leave without detection.",
+                            "imageUrl": "../assets/images/tasks/level2/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Plant backdoor in the security system servers.",
+                        "desc": "Install persistent access into surveillance databases.",
+                        "imageUrl": "../assets/images/tasks/level2/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Access security console",
+                            "desc": "Gain control of the main terminal.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Insert malware drive",
+                            "desc": "Connect backdoor installer.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Encrypt payload",
+                            "desc": "Hide malware from detection.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Monitor upload",
+                            "desc": "Ensure successful infection.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Test remote access",
+                            "desc": "Check Corporation control works remotely.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Scrub fingerprints",
+                            "desc": "Erase presence after planting.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Confirm uplink",
+                            "desc": "Ping backdoor to HQ servers.",
+                            "imageUrl": "../assets/images/tasks/level2/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Seize physical access cards for high-security zones.",
+                        "desc": "Collect and confiscate all master access cards to control movement.",
+                        "imageUrl": "../assets/images/tasks/level2/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Identify cardholders",
+                            "desc": "Spot guards with master keys.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Stalk target guards",
+                            "desc": "Follow them discreetly.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Pickpocket or ambush",
+                            "desc": "Take their keycards silently.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Clone cards",
+                            "desc": "Duplicate cards for later use.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Secure originals",
+                            "desc": "Store them safely.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Report collection",
+                            "desc": "Inform HQ of progress.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Distribute cards",
+                            "desc": "Assign cards to field operatives.",
+                            "imageUrl": "../assets/images/tasks/level2/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 3,
+            "name": "Research Labs",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Steal prototype schematics from lab archives.",
+                        "desc": "Extract experimental designs without triggering biohazard lockdown.",
+                        "imageUrl": "../assets/images/tasks/level3/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate archives room",
+                            "desc": "Find the restricted records chamber.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Bypass retinal scanner",
+                            "desc": "Hack or spoof scientist access.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Access terminals",
+                            "desc": "Reach design storage computers.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Download schematics",
+                            "desc": "Copy prototype files discreetly.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Avoid lab sensors",
+                            "desc": "Prevent biohazard alarms from tripping.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Secure drive",
+                            "desc": "Protect the files during exfiltration.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit through decontamination",
+                            "desc": "Leave via clean-room corridors.",
+                            "imageUrl": "../assets/images/tasks/level3/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Plant false research data in laboratory systems.",
+                        "desc": "Replace real results with corrupted versions to mislead rivals.",
+                        "imageUrl": "../assets/images/tasks/level3/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Access lab terminals",
+                            "desc": "Find computers with research logs.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Upload counterfeit data",
+                            "desc": "Insert fake experiment results.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Modify timestamps",
+                            "desc": "Adjust dates to look authentic.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Bypass integrity scans",
+                            "desc": "Prevent system from flagging fakes.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Encrypt evidence",
+                            "desc": "Hide traces of tampering.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Notify Corporation",
+                            "desc": "Confirm false data injection.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit via ventilation",
+                            "desc": "Slip out through air ducts.",
+                            "imageUrl": "../assets/images/tasks/level3/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Confiscate restricted chemical samples.",
+                        "desc": "Secure dangerous compounds before they leak to black markets.",
+                        "imageUrl": "../assets/images/tasks/level3/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate sample vault",
+                            "desc": "Identify storage lockers with hazardous vials.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Override containment locks",
+                            "desc": "Force entry without triggering alarms.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Collect labeled vials",
+                            "desc": "Gather the highest-risk samples.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Seal in carriers",
+                            "desc": "Place chemicals in protective cases.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Neutralize lab guards",
+                            "desc": "Ensure escort teams cannot interfere.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Log confiscation",
+                            "desc": "Record details for HQ chain-of-custody.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Transport to extraction point",
+                            "desc": "Deliver to safe pickup zone.",
+                            "imageUrl": "../assets/images/tasks/level3/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 4,
+            "name": "Armory",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Steal advanced weapon blueprints.",
+                        "desc": "Infiltrate armory to copy latest weapons schematics.",
+                        "imageUrl": "../assets/images/tasks/level4/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Map guard patrols",
+                            "desc": "Learn sentry patterns.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Find blueprint storage",
+                            "desc": "Locate design chamber.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Hack secured terminal",
+                            "desc": "Break into defense systems.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Download files",
+                            "desc": "Steal encrypted schematics.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Avoid auto-turrets",
+                            "desc": "Sneak past automated defenses.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Extract safely",
+                            "desc": "Leave armory undetected.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Confirm handoff",
+                            "desc": "Transmit files to Agency.",
+                            "imageUrl": "../assets/images/tasks/level4/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Sabotage ammunition stockpiles.",
+                        "desc": "Corrupt storage so rival weapons malfunction in battle.",
+                        "imageUrl": "../assets/images/tasks/level4/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate ammo depot",
+                            "desc": "Find primary storage crates.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Plant tampering devices",
+                            "desc": "Attach sabotage modules.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Mix defective rounds",
+                            "desc": "Insert faulty ammo batches.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Reset cameras",
+                            "desc": "Erase evidence of access.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Log sabotage success",
+                            "desc": "Confirm crates compromised.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Seal crates",
+                            "desc": "Close storage containers cleanly.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit unnoticed",
+                            "desc": "Slip out before patrol arrives.",
+                            "imageUrl": "../assets/images/tasks/level4/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Secure prototype weapons for military use.",
+                        "desc": "Take control of experimental hardware before rogue actors claim them.",
+                        "imageUrl": "../assets/images/tasks/level4/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Find weapons vault",
+                            "desc": "Pinpoint prototype lockers.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Override vault codes",
+                            "desc": "Crack security locks.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Identify valuable prototypes",
+                            "desc": "Select the most strategic items.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Retrieve weapons",
+                            "desc": "Safely remove devices.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Secure in containers",
+                            "desc": "Place weapons in protective cases.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Report recovery",
+                            "desc": "Transmit list to HQ.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Escort to extraction",
+                            "desc": "Guard weapons during removal.",
+                            "imageUrl": "../assets/images/tasks/level4/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 5,
+            "name": "Executive Suites",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Collect confidential meeting transcripts.",
+                        "desc": "Retrieve recordings of executive calls for intel.",
+                        "imageUrl": "../assets/images/tasks/level5/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate boardroom",
+                            "desc": "Find where meetings are stored.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Tap into comms",
+                            "desc": "Install listening devices.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Extract recordings",
+                            "desc": "Download audio logs.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Scrub logs",
+                            "desc": "Erase trace of downloads.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Hide devices",
+                            "desc": "Keep surveillance tools hidden.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Deliver files",
+                            "desc": "Send to Agency uplink.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit by service elevator",
+                            "desc": "Leave discreetly via staff routes.",
+                            "imageUrl": "../assets/images/tasks/level5/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Blackmail executive leadership.",
+                        "desc": "Gather compromising evidence to control upper management.",
+                        "imageUrl": "../assets/images/tasks/level5/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Break into suites",
+                            "desc": "Force entry into executive rooms.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Find personal safes",
+                            "desc": "Locate sensitive storage.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Crack safes",
+                            "desc": "Bypass locks for private files.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Collect compromising evidence",
+                            "desc": "Obtain blackmail materials.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Photograph files",
+                            "desc": "Copy data without removing originals.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Store securely",
+                            "desc": "Encrypt files in Corporation drives.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit suites",
+                            "desc": "Leave without disturbing staff.",
+                            "imageUrl": "../assets/images/tasks/level5/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Arrest high-ranking traitors.",
+                        "desc": "Apprehend executives suspected of espionage.",
+                        "imageUrl": "../assets/images/tasks/level5/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Confirm identities",
+                            "desc": "Cross-check executive dossiers.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Deploy arrest team",
+                            "desc": "Position officers at suites.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Neutralize guards",
+                            "desc": "Disable executive bodyguards.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Capture targets",
+                            "desc": "Secure executives alive.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Secure evidence",
+                            "desc": "Collect proof of treason.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Interrogate detainees",
+                            "desc": "Begin questioning process.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Transport prisoners",
+                            "desc": "Escort to secure facility.",
+                            "imageUrl": "../assets/images/tasks/level5/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 6,
+            "name": "Data Center",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Intercept classified communications.",
+                        "desc": "Tap into secure lines and extract sensitive transmissions.",
+                        "imageUrl": "../assets/images/tasks/level6/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate comms hub",
+                            "desc": "Find central relay servers.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Plant listening devices",
+                            "desc": "Install covert interceptors.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Download live feeds",
+                            "desc": "Capture ongoing transmissions.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Store safely",
+                            "desc": "Save transmissions securely.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Clean traces",
+                            "desc": "Wipe access records.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Transmit intel",
+                            "desc": "Send files to Agency uplink.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit silently",
+                            "desc": "Leave data center undetected.",
+                            "imageUrl": "../assets/images/tasks/level6/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Insert spyware into main servers.",
+                        "desc": "Deploy long-term surveillance malware across data systems.",
+                        "imageUrl": "../assets/images/tasks/level6/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Access server racks",
+                            "desc": "Find hardware terminals.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Install spyware loaders",
+                            "desc": "Deploy corporate malware.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Mask processes",
+                            "desc": "Hide spyware in normal activity.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Test surveillance feed",
+                            "desc": "Confirm live monitoring works.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Encrypt payloads",
+                            "desc": "Hide spyware communications.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Notify HQ",
+                            "desc": "Report spyware installation complete.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit racks",
+                            "desc": "Slip away undetected.",
+                            "imageUrl": "../assets/images/tasks/level6/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Shut down illegal data operations.",
+                        "desc": "Disable and seize rogue server operations.",
+                        "imageUrl": "../assets/images/tasks/level6/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate illegal clusters",
+                            "desc": "Identify rogue server racks.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Deploy shutdown codes",
+                            "desc": "Force-stop unauthorized nodes.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Seize hardware",
+                            "desc": "Physically secure server units.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Extract sensitive drives",
+                            "desc": "Remove storage with criminal data.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Disable backups",
+                            "desc": "Ensure no secondary clusters remain.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Secure evidence",
+                            "desc": "Catalog seized data for legal use.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Report shutdown",
+                            "desc": "Inform HQ mission complete.",
+                            "imageUrl": "../assets/images/tasks/level6/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 7,
+            "name": "Penthouse",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Assassinate key double agent.",
+                        "desc": "Neutralize a traitor hiding in the penthouse without civilian casualties.",
+                        "imageUrl": "../assets/images/tasks/level7/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Infiltrate penthouse",
+                            "desc": "Reach top floors undetected.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Identify target",
+                            "desc": "Confirm traitor’s identity.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Avoid civilians",
+                            "desc": "Prevent collateral damage.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Neutralize quietly",
+                            "desc": "Eliminate target silently.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Secure intel",
+                            "desc": "Collect any secret documents.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Clean crime scene",
+                            "desc": "Erase all traces of operation.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit rooftop",
+                            "desc": "Escape via roof extraction.",
+                            "imageUrl": "../assets/images/tasks/level7/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Bribe influential politician guest.",
+                        "desc": "Secure a politician’s loyalty through covert payments.",
+                        "imageUrl": "../assets/images/tasks/level7/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Locate guest suite",
+                            "desc": "Find politician’s room.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Approach discreetly",
+                            "desc": "Make contact without witnesses.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Present offer",
+                            "desc": "Deliver bribe package.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Negotiate terms",
+                            "desc": "Secure favorable deal.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Collect signed agreement",
+                            "desc": "Obtain proof of allegiance.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Secure transaction logs",
+                            "desc": "Hide evidence of bribe.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Exit via service stairs",
+                            "desc": "Leave discreetly.",
+                            "imageUrl": "../assets/images/tasks/level7/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Protect visiting dignitary.",
+                        "desc": "Ensure safety of foreign ally during penthouse stay.",
+                        "imageUrl": "../assets/images/tasks/level7/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Scout penthouse",
+                            "desc": "Check for threats.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Secure perimeter",
+                            "desc": "Position guards at entrances.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Sweep for bugs",
+                            "desc": "Remove listening devices.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Escort dignitary",
+                            "desc": "Provide close protection.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Monitor comms",
+                            "desc": "Intercept threats early.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Neutralize attackers",
+                            "desc": "Defend against aggressors.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Extract dignitary",
+                            "desc": "Escort to safe zone.",
+                            "imageUrl": "../assets/images/tasks/level7/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "floor": 8,
+            "name": "Rooftop",
+            "tasks": {
+                "Agency": {
+                    "task": {
+                        "name": "Secure helicopter extraction.",
+                        "desc": "Hold rooftop until Agency extraction team arrives.",
+                        "imageUrl": "../assets/images/tasks/level8/Agency/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Reach rooftop",
+                            "desc": "Fight or sneak past final guards.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub1.jpeg"
+                        },
+                        {
+                            "name": "Signal chopper",
+                            "desc": "Deploy Agency beacon.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub2.jpeg"
+                        },
+                        {
+                            "name": "Hold position",
+                            "desc": "Defend landing zone.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub3.jpeg"
+                        },
+                        {
+                            "name": "Neutralize threats",
+                            "desc": "Clear enemies approaching.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub4.jpeg"
+                        },
+                        {
+                            "name": "Protect VIP items",
+                            "desc": "Keep intel or assets safe.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub5.jpeg"
+                        },
+                        {
+                            "name": "Board helicopter",
+                            "desc": "Enter extraction vehicle.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub6.jpeg"
+                        },
+                        {
+                            "name": "Escape safely",
+                            "desc": "Leave site undetected from air.",
+                            "imageUrl": "../assets/images/tasks/level8/Agency/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Corporation": {
+                    "task": {
+                        "name": "Hijack enemy extraction chopper.",
+                        "desc": "Intercept and capture helicopter for Corporation use.",
+                        "imageUrl": "../assets/images/tasks/level8/Corporation/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Reach helipad",
+                            "desc": "Arrive before enemy team.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub1.jpeg"
+                        },
+                        {
+                            "name": "Disable security lights",
+                            "desc": "Kill visibility systems.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub2.jpeg"
+                        },
+                        {
+                            "name": "Ambush pilots",
+                            "desc": "Take pilots hostage silently.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub3.jpeg"
+                        },
+                        {
+                            "name": "Rewire controls",
+                            "desc": "Hack helicopter systems.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub4.jpeg"
+                        },
+                        {
+                            "name": "Load cargo",
+                            "desc": "Secure Corporation assets aboard.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub5.jpeg"
+                        },
+                        {
+                            "name": "Lift off",
+                            "desc": "Pilot helicopter away.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub6.jpeg"
+                        },
+                        {
+                            "name": "Confirm capture",
+                            "desc": "Signal HQ success.",
+                            "imageUrl": "../assets/images/tasks/level8/Corporation/sub7.jpeg"
+                        }
+                    ]
+                },
+                "Government": {
+                    "task": {
+                        "name": "Seize rooftop for military lockdown.",
+                        "desc": "Control extraction point and deny use to enemies.",
+                        "imageUrl": "../assets/images/tasks/level8/Government/task.jpeg"
+                    },
+                    "subtasks": [
+                        {
+                            "name": "Deploy troops",
+                            "desc": "Land soldiers on rooftop.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub1.jpeg"
+                        },
+                        {
+                            "name": "Suppress enemies",
+                            "desc": "Eliminate hostile operatives.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub2.jpeg"
+                        },
+                        {
+                            "name": "Secure perimeter",
+                            "desc": "Lock down access points.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub3.jpeg"
+                        },
+                        {
+                            "name": "Confiscate assets",
+                            "desc": "Seize intel and weapons left.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub4.jpeg"
+                        },
+                        {
+                            "name": "Raise flag",
+                            "desc": "Signal rooftop is under control.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub5.jpeg"
+                        },
+                        {
+                            "name": "Block airspace",
+                            "desc": "Prevent hostile helicopters from entering.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub6.jpeg"
+                        },
+                        {
+                            "name": "Maintain lockdown",
+                            "desc": "Hold position until relieved.",
+                            "imageUrl": "../assets/images/tasks/level8/Government/sub7.jpeg"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,361 @@
+{
+  "cutscene1": {
+    "id": "cutscene1",
+    "background": "../assets/images/tasks/level1/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Kade, this is Owl. I've managed to patch into all three channels simultaneously. They're all demanding different things from you on this floor.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-01 Encounter.mp3"
+      },
+      {
+        "text": "The Agency wants Glady's badge recovered from the security desk - could be crucial for accessing restricted areas.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub2.jpeg"
+      },
+      {
+        "text": "The Corporation is pushing for HR server logs - probably looking for blackmail material or recruitment targets.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government spooks want all visitor logs destroyed - classic cover-up operation.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub4.jpeg"
+      },
+      {
+        "text": "Problem is, you can't do all three without raising alarms. Choose carefully - each faction will reward you differently, but they'll also notice if you ignore their priorities.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub5.jpeg"
+      },
+      {
+        "text": "Understood, Owl. Glady's badge is my priority. If I can grab the server logs on the way, I will. But I'm not burning evidence until I know what we're dealing with.",
+        "portrait": "player",
+        "background": "../assets/images/tasks/level1/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Smart move. The badge should be near the north security desk. Watch for patrols - they've doubled guard rotation since Glady's breach.",
+        "portrait": "owl",
+        "background": "../assets/images/tasks/level1/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-1"
+  },
+  "cutscene2": {
+    "id": "cutscene2",
+    "background": "./assets/images/tasks/level2/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Security floor, Kade. Heavy surveillance here. All three factions have different approaches.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-02 Combat.mp3"
+      },
+      {
+        "text": "Agency wants you to create blind spots in the camera coverage - would help your movement but might draw attention.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation is demanding a backdoor in their systems - risky but could give us long-term access.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants you to confiscate access cards - brute force approach that might lock down the facility.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub4.jpeg"
+      },
+      {
+        "text": "Glady's last transmission mentioned she had to bypass this floor quickly - said the security AI was 'unusually adaptive'. Watch your back.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub5.jpeg"
+      },
+      {
+        "text": "Adaptive AI? That explains the strange patrol patterns. I'll create camera blind spots first - need to move freely before attempting any hacks.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level2/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Good call. The control room is to your east. I'm detecting two guards on regular patrol, but that AI might change their patterns without warning.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level2/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-2"
+  },
+  "cutscene3": {
+    "id": "cutscene3",
+    "background": "./assets/images/tasks/level3/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Research level, Kade. This is where Glady's last confirmed signal originated. All factions are extremely interested in what's down here.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-03 Omen.mp3"
+      },
+      {
+        "text": "Agency wants prototype schematics - probably related to whatever Glady discovered.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants you to plant false research data - sabotage operation.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants chemical samples confiscated - containment protocol.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub4.jpeg"
+      },
+      {
+        "text": "If Glady is still alive, she's likely hiding in this sector. Look for her markers - she always leaves a small owl doodle as a trail.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub5.jpeg"
+      },
+      {
+        "text": "I see one of her marks near the ventilation shaft. She was here. Whatever she found must be big if all three factions want pieces of it.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level3/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Focus, Kade. Get what you need but prioritize finding Glady. The schematics might reveal what they're really developing here.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level3/Agency/sub7.jpeg"
+      },
+      {
+        "text": "Understood. I'll grab the schematics and look for Glady. The government can have their samples if it means containing this mess.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level3/Corporation/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-3"
+  },
+  "cutscene4": {
+    "id": "cutscene4",
+    "background": "./assets/images/tasks/level4/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Armory level, Kade. Heavily fortified. Choose your approach carefully.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-04 Visions.mp3"
+      },
+      {
+        "text": "Agency wants weapon blueprints - could give us an edge if things go hot.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants ammo sabotage - risky but would cripple their security forces.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants prototype weapons secured - deniable assets for their black ops.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub4.jpeg"
+      },
+      {
+        "text": "Glady's tracker briefly pinged near here before going silent again. She might have been looking for something to defend herself.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub5.jpeg"
+      },
+      {
+        "text": "I need those blueprints. If Glady's in trouble, knowing their weapons could save us both. The prototypes can wait.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level4/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Blueprints are in the western archive. Thermal shows three guards stationed there. You'll need to draw them out or take them quietly.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level4/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-4"
+  },
+  "cutscene5": {
+    "id": "cutscene5",
+    "background": "./assets/images/tasks/level5/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Executive floor, Kade. Where the decisions get made. All factions want leverage here.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-05 Unease.mp3"
+      },
+      {
+        "text": "Agency wants meeting transcripts - could expose the truth about this facility.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants blackmail material - standard corporate espionage.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants executives arrested - silencing loose ends.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub4.jpeg"
+      },
+      {
+        "text": "I'm detecting encrypted communications that match Glady's encryption pattern. She might be monitoring these suites.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub5.jpeg"
+      },
+      {
+        "text": "The transcripts could reveal what happened to Glady. I'm going for those first. If I can grab compromising data on the way, even better.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level5/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Boardroom is your target. They're having a meeting in 10 minutes - perfect time to plant listening devices while it's empty.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level5/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-5"
+  },
+  "cutscene6": {
+    "id": "cutscene6",
+    "background": "./assets/images/tasks/level6/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Data center, Kade. The brain of the operation. All factions want control of the information here.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-06 Loss.mp3"
+      },
+      {
+        "text": "Agency wants comms interception - real-time intelligence on their operations.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants spyware installation - long-term surveillance access.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants servers shutdown - complete data denial.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub4.jpeg"
+      },
+      {
+        "text": "I'm picking up fragments of Glady's data signature in the network traffic. She's been in these systems recently.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub5.jpeg"
+      },
+      {
+        "text": "If Glady's data is in there, I need to intercept those communications before the government destroys everything.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level6/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Prioritize the comms hub in sector 4-B. I'll try to isolate her data signature so we can pinpoint her location.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level6/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-6"
+  },
+  "cutscene7": {
+    "id": "cutscene7",
+    "background": "./assets/images/tasks/level7/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Penthouse level, Kade. The inner sanctum. Factions have their endgame plays ready.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-12 Fleeing.mp3"
+      },
+      {
+        "text": "Agency wants a double agent eliminated - high risk, high reward.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants a politician bribed - influence game.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants a dignitary protected - maintaining appearances.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub4.jpeg"
+      },
+      {
+        "text": "Glady's signal is strong here. She's somewhere on this floor, but I can't pinpoint exactly where with all the interference.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub5.jpeg"
+      },
+      {
+        "text": "I'm not playing their games, Owl. I'm here for Glady. If that double agent gets in my way, that's their problem.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level7/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Careful, Kade. The double agent likely knows about Glady's location. They might be using her as bait. Proceed with extreme caution.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level7/Agency/sub7.jpeg"
+      }
+    ],
+    "nextScene": "level-7"
+  },
+  "cutscene8": {
+    "id": "cutscene8",
+    "background": "./assets/images/tasks/level8/Agency/task.jpeg",
+    "dialogue": [
+      {
+        "text": "Rooftop extraction, Kade. This is where it ends - one way or another. All factions are preparing their exfil plans.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub1.jpeg",
+        "musicCue": "./sounds/level-ambience/1-13 Escape.mp3"
+      },
+      {
+        "text": "Agency has a chopper inbound if you can secure the LZ and protect whatever intel you've recovered.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub2.jpeg"
+      },
+      {
+        "text": "Corporation wants you to hijack enemy extraction - risky but high reward if you pull it off.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub3.jpeg"
+      },
+      {
+        "text": "Government wants full military lockdown - complete deniability operation.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub4.jpeg"
+      },
+      {
+        "text": "Whatever you choose, make it count. I'll be in your ear until the end. Find Glady, get out alive, and remember - trust no one but yourself.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub5.jpeg"
+      },
+      {
+        "text": "I've got Glady. She's injured but stable. We're taking the Agency extraction. If the Corporation or Government get in our way, they'll regret it.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level8/Agency/sub6.jpeg"
+      },
+      {
+        "text": "Agency chopper is 2 minutes out. I've scrambled their air support to create a diversion. Get to the LZ and watch for snipers on the western tower.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Agency/sub7.jpeg"
+      },
+      {
+        "text": "Almost there, Owl. Thanks for having my back through this hell.",
+        "portrait": "player",
+        "background": "./assets/images/tasks/level8/Corporation/sub1.jpeg"
+      },
+      {
+        "text": "Always, Kade. Now bring her home.",
+        "portrait": "owl",
+        "background": "./assets/images/tasks/level8/Corporation/sub2.jpeg"
+      }
+    ],
+    "nextScene": "level-8"
+  }
+}
