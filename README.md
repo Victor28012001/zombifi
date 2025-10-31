@@ -172,6 +172,9 @@ async function awardXP(playerId, missionId, xp) {
 We welcome contributions!
 Feel free to open issues, submit pull requests, or propose new missions and storylines.
 
+# Certification link
+https://claim.hashgraphdev.com/certification?oneTimeCode=05d887c0-9534-11f0-8004-731714d16728
+
 🧱 Built For
 
 The Hedera Game Jam — showcasing how narrative-driven web3 games can use Hedera NFTs to create permanent, player-owned stories.
