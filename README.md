@@ -5,7 +5,7 @@ A horror FPS RPG where you venture through a sinister medical facility to save y
 
 🎮 Live Demo
 
-https://bring-back-gladys.vercel.app/
+https://github.com/Victor28012001/zombifi
 
 🎥 Demo Video
 
@@ -101,8 +101,8 @@ A Hedera-compatible wallet (HashPack or Blade)
 
 Local Development
 # Clone repository
-git clone https://github.com/Victor28012001/Bring-Back-Gladys
-cd bring-back-gladys
+git clone https://github.com/Victor28012001/zombifi
+cd zombifi
 
 # Install dependencies
 npm install
@@ -122,7 +122,7 @@ Access locally at: http://localhost:5173
 🛠️ Backend Setup (Hedera Integration)
 
 Backend repo:
-🔗 https://github.com/Victor28012001/Bring-Back-Gladys-api
+🔗 https://github.com/Victor28012001/zombifi/server
 
 Prerequisites
 
@@ -139,8 +139,8 @@ HEDERA_NETWORK=testnet
 FRONTEND_URL=http://localhost:5173
 
 Run Backend
-git clone https://github.com/Victor28012001/Bring-Back-Gladys-api.git
-cd Bring-Back-Gladys-api
+git clone https://github.com/Victor28012001/zombifi.git
+cd zombifi
 npm install
 npm start
 
