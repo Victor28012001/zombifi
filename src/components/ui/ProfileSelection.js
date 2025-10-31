@@ -1,196 +1,157 @@
 import { GameState } from "../../core/GameState.js";
-import { client } from "../../utils/honeyCombServices.js";
 import { playerProfileInstance } from "../../entities/PlayerProfile.js";
-import { createSolanaWalletButton } from "../../utils/walletConnection.js";
-import { getUserPublicKey } from "../../utils/walletState.js";
 import { ProfileHelpers } from "../helpers/profileHelpers.js";
+import { hederaNFTService } from "../../utils/hederaNFTService.js";
 
 export class ProfileSelection {
   constructor(root) {
     this.root = root;
     this.profiles = [];
     this.selectedProfileIndex = null;
-    this.walletConnected = false;
-    this.formSubmitted = false;
+    this.hederaConnected = false;
     this.messageTimeout = null;
     this.helpers = new ProfileHelpers();
-    this.walletChangeHandler = null;
-    window.addEventListener("civic-auth-complete", () =>
-      this.onCivicAuthComplete()
-    );
   }
 
   async show(game) {
-    const publickey = getUserPublicKey();
-    const displayKey = this.helpers.formatPublicKey(publickey);
-    // console.log("Displaying wallet key:", displayKey);
+    const hederaAccountId = hederaNFTService.getAccountId();
+    const displayAccountId = this.helpers.formatHederaAccountId(hederaAccountId);
 
-    // Reset profiles and fetch from chain
-    this.profiles = [];
-    let hasChainProfiles = false;
+    // Load local profiles
+    this.profiles = await this.helpers.fetchLocalProfiles();
 
-    if (publickey) {
-      try {
-        const chainProfiles = await this.helpers.fetchChainProfiles(publickey);
-        if (chainProfiles.length > 0) {
-          hasChainProfiles = true;
-          this.profiles = chainProfiles;
-        }
-      } catch (error) {
-        console.error("Error fetching chain profiles:", error);
-      }
-    }
-
-    // If no chain profiles, show default disabled option
-    if (!hasChainProfiles) {
-      this.profiles = [this.helpers.createDefaultProfile(publickey)];
-    }
-
-    // Set the first profile as active in GameState if valid
-    if (this.profiles.length > 0 && this.profiles[0].isChainProfile) {
+    // Set the first profile as active in GameState
+    if (this.profiles.length > 0) {
       playerProfileInstance.setProfile(this.profiles[0]);
     }
 
     // Render UI
-    this.root.innerHTML = this.createProfileHTML(displayKey);
-    const placeholder = this.root.querySelector(".flex-button-placeholder");
-
+    this.root.innerHTML = this.createProfileHTML(displayAccountId);
     this.addEventListeners(game);
-    createSolanaWalletButton("#connectWalletBtn", () => {
-      this.walletConnected = true;
-      this.show(game);
-    });
-    this.setupWalletChangeListener(game);
+    this.setupHederaEventListener();
   }
 
-  async userHasWallet(ctx) {
-    return ctx?.solana?.publicKey != null;
+  createNFTCollectionUI() {
+    return `
+      <div class="nft-collection-section">
+        <h3>Your Game NFTs</h3>
+        <div class="wallet-connection">
+          <button id="connectHederaBtn" class="hedera-connect-btn">
+            ${hederaNFTService.isConnected() ? 
+              `Connected: ${hederaNFTService.getAccountId()}` : 
+              'Connect Hedera Wallet'}
+          </button>
+          ${hederaNFTService.isConnected() ? 
+            '<button id="disconnectHederaBtn" class="hedera-disconnect-btn">Disconnect</button>' : 
+            ''}
+        </div>
+        <div id="nftCollection" class="nft-grid">
+          <!-- NFTs will be loaded here -->
+        </div>
+      </div>
+    `;
   }
 
-  async onCivicAuthComplete(retry = 0) {
-    const ctx = window.userContext;
-    if (!ctx) {
-      if (retry < 5) {
-        setTimeout(() => this.onCivicAuthComplete(retry + 1), 200);
-        return;
-      }
-      console.error("Civic user context not found after retries.");
+  async loadUserNFTs() {
+    const nftContainer = document.getElementById('nftCollection');
+    if (!nftContainer) return;
+
+    if (!hederaNFTService.isConnected()) {
+      nftContainer.innerHTML = '<p class="no-nfts">Connect your Hedera wallet to view NFTs</p>';
       return;
     }
 
-    if (ctx.user && !(await this.userHasWallet(ctx))) {
-      await ctx.createWallet();
-    }
+    nftContainer.innerHTML = '<p class="loading">Loading NFTs...</p>';
 
-    if (await this.userHasWallet(ctx)) {
-      const publicKey = ctx.solana?.publicKey;
-      if (publicKey) {
-        localStorage.setItem("civicWallet", publicKey);
-        this.walletConnected = true;
-        this.show(GameState.game);
+    try {
+      const nfts = await hederaNFTService.getUserNFTs();
+      
+      if (nfts.length === 0) {
+        nftContainer.innerHTML = '<p class="no-nfts">No NFTs yet. Complete levels to earn rewards!</p>';
+        return;
       }
+
+      nftContainer.innerHTML = nfts.map(nft => `
+        <div class="nft-card">
+          <img src="${nft.image}" alt="${nft.name}" class="nft-image" />
+          <div class="nft-info">
+            <h4>${nft.name}</h4>
+            <p>${nft.description}</p>
+            <div class="nft-attributes">
+              ${(nft.attributes || []).map(attr => `
+                <span class="attribute">${attr.trait_type}: ${attr.value}</span>
+              `).join('')}
+            </div>
+            <div class="nft-serial">Serial: #${nft.serial}</div>
+          </div>
+        </div>
+      `).join('');
+    } catch (error) {
+      nftContainer.innerHTML = '<p class="error">Failed to load NFTs</p>';
+      console.error("Error loading NFTs:", error);
     }
   }
 
-  setupWalletChangeListener(game) {
-    // Remove previous listener if exists
-    if (this.walletChangeHandler) {
-      window.removeEventListener("wallet-changed", this.walletChangeHandler);
-    }
+  addNFTEventListeners() {
+    const connectBtn = document.getElementById('connectHederaBtn');
+    const disconnectBtn = document.getElementById('disconnectHederaBtn');
 
-    this.walletChangeHandler = async () => {
-      await this.refreshProfileView(game);
-    };
-
-    window.addEventListener("wallet-changed", this.walletChangeHandler);
-  }
-
-  async refreshProfileView(game) {
-    const publickey = getUserPublicKey();
-    const displayKey = this.helpers.formatPublicKey(publickey);
-
-    // Clear existing profiles
-    this.profiles = [];
-    let hasChainProfiles = false;
-
-    if (publickey) {
-      try {
-        const chainProfiles = await this.helpers.fetchChainProfiles(publickey);
-        if (chainProfiles.length > 0) {
-          hasChainProfiles = true;
-          this.profiles = chainProfiles;
+    if (connectBtn) {
+      connectBtn.addEventListener('click', async () => {
+        if (!hederaNFTService.isConnected()) {
+          try {
+            await hederaNFTService.connectWallet();
+            this.loadUserNFTs();
+            // Update button text
+            connectBtn.textContent = `Connected: ${hederaNFTService.getAccountId()}`;
+          } catch (error) {
+            console.error("Failed to connect wallet:", error);
+          }
         }
-      } catch (error) {
-        console.error("Error fetching chain profiles:", error);
-      }
+      });
     }
 
-    // Fallback to default if no profiles found
-    if (!hasChainProfiles) {
-      this.profiles = [this.helpers.createDefaultProfile(publickey)];
-    }
-
-    // Update player profile instance
-    if (this.profiles.length > 0) {
-      const activeProfile = this.profiles[0];
-      playerProfileInstance.setProfile(activeProfile);
-
-      // Update UI immediately
-      this.updateProfileUI(displayKey, activeProfile);
+    if (disconnectBtn) {
+      disconnectBtn.addEventListener('click', async () => {
+        await hederaNFTService.disconnectWallet();
+        this.loadUserNFTs();
+        const connectBtn = document.getElementById('connectHederaBtn');
+        if (connectBtn) {
+          connectBtn.textContent = 'Connect Hedera Wallet';
+        }
+      });
     }
   }
 
-  updateProfileUI(displayKey, activeProfile) {
-    // Update wallet button display
-    const walletBtn = document.getElementById("connectWalletBtn");
-    if (walletBtn) {
-      walletBtn.textContent = displayKey;
-      walletBtn.dataset.connected = activeProfile.isChainProfile
-        ? "true"
-        : "false";
-    }
-
-    // Update profile cards
-    const profileCards = document.querySelectorAll(".profile-btn");
-    profileCards.forEach((card, index) => {
-      const profile = this.profiles[index];
-      if (!profile) return;
-
-      // Update image
-      const img = card.querySelector(".profile-img");
-      if (img) {
-        img.src = profile.image || this.helpers.getDefaultAvatar();
-        img.classList.toggle("chosen", profile.chosen);
+  setupHederaEventListener() {
+    // Listen for wallet connection changes
+    window.addEventListener('hedera-wallet-connected', () => {
+      this.loadUserNFTs();
+      const connectBtn = document.getElementById('connectHederaBtn');
+      if (connectBtn) {
+        connectBtn.textContent = `Connected: ${hederaNFTService.getAccountId()}`;
       }
+      // Refresh the profile view to show updated connection status
+      this.show(GameState.game);
+    });
 
-      // Update name
-      const nameEl = card.querySelector(".profile-name");
-      if (nameEl) nameEl.textContent = profile.name;
-
-      // Update XP/tier indicators
-      const tierInfo = this.helpers.getTierDisplayInfo(profile.xp || 0);
-      const xpBadge = card.querySelector(".xp-badge");
-      if (xpBadge) xpBadge.textContent = `${profile.xp} XP`;
-
-      const tierBadge = card.querySelector(".tier-badge");
-      if (tierBadge) {
-        tierBadge.className = `tier-badge ${tierInfo.tier.toLowerCase()}`;
-        tierBadge.textContent = tierInfo.tier;
+    window.addEventListener('hedera-wallet-disconnected', () => {
+      this.loadUserNFTs();
+      const connectBtn = document.getElementById('connectHederaBtn');
+      if (connectBtn) {
+        connectBtn.textContent = 'Connect Hedera Wallet';
       }
-
-      const progressBar = card.querySelector(".progress-bar");
-      if (progressBar) progressBar.style.width = `${tierInfo.percent}%`;
+      // Refresh the profile view
+      this.show(GameState.game);
     });
   }
 
-  createProfileHTML(displayKey) {
+  createProfileHTML(displayAccountId) {
     const createCornerDivs = (baseClass) =>
       Array.from(
         { length: 4 },
         (_, i) => `<div class="${baseClass}${i + 1}"></div>`
       ).join("");
-
-    const DEFAULT_AVATAR = this.helpers.getDefaultAvatar();
 
     return `
       <div class="main" id="main-profile">
@@ -199,10 +160,9 @@ export class ProfileSelection {
         <div class="menuOpenBtns">
           ${createCornerDivs("corner")}
           <div class="topHeadingDiv">
-            <p>Want to own your story?, connect Wallet</p>
-            <div class="flex-button-placeholder"></div>
+            <p>Connect Hedera Wallet to earn NFT rewards</p>
             <div class="flex-button" id="flex-buttons">
-              <button id="connectWalletBtn">${displayKey}</button>
+              <button id="connectHederaBtn">${displayAccountId}</button>
             </div>
           </div>
           <div class="selectionBtns">
@@ -211,6 +171,8 @@ export class ProfileSelection {
               .join("")}
           </div>
         </div>
+
+        ${this.createNFTCollectionUI()}
 
         <div class="overlay"></div>
 
@@ -233,7 +195,7 @@ export class ProfileSelection {
           </div>
         </div>
         <div id="bottom-button">
-          <button id="bottom-btn">Continue</button>
+          <button id="bottom-btn">Continue to Game</button>
         </div>
       </div>
     `;
@@ -256,11 +218,10 @@ export class ProfileSelection {
 
   createProfileButton(profile, index) {
     const imageUrl = profile.image || this.helpers.getDefaultAvatar();
-    const disabledClass = profile.disabled ? "disabled" : "";
     const tierInfo = this.helpers.getTierDisplayInfo(profile.xp || 0);
 
     return `
-      <label for="open${index}" class="open profile-btn ${disabledClass}" data-index="${index}" tabindex="0">
+      <label for="open${index}" class="open profile-btn" data-index="${index}" tabindex="0">
         <div class="profile-container">
           <div class="avatar-container">
             <img src="${imageUrl}" alt="${profile.name}" class="profile-img ${
@@ -281,12 +242,12 @@ export class ProfileSelection {
     return `
       <form id="customProfileForm" class="custom-profile-form">
         <label class="image-upload">
-          <input type="file" accept="image/*" id="profileImageInput" required />
+          <input type="file" accept="image/*" id="profileImageInput" />
           <div class="image-preview"></div>
         </label>
         <div id="inputs">
           <input type="text" id="profileName" placeholder="Enter name" required />
-          <textarea id="profileDesc" placeholder="Enter description" required></textarea>
+          <textarea id="profileDesc" placeholder="Enter description"></textarea>
           <button type="submit">Create Profile</button>
         </div>
       </form>
@@ -306,61 +267,34 @@ export class ProfileSelection {
   }
 
   addEventListeners(game) {
-    const openRadios = document.querySelectorAll("input.open");
-    const profileBtns = document.querySelectorAll(
-      ".profile-btn:not(.disabled)"
-    );
+    const profileBtns = document.querySelectorAll(".profile-btn");
     const yesNoLabels = document.querySelectorAll("label.yes, label.no");
-    const yesNoRadios = document.querySelectorAll(
-      "input.yesCheck, input.noCheck"
-    );
     const continueBtn = document.getElementById("bottom-btn");
     const fileInput = document.getElementById("profileImageInput");
     const imagePreview = document.querySelector(".image-preview");
     const form = document.getElementById("customProfileForm");
-
-    let currentIndex = 0;
-    let inYesNoSection = false;
-    let allowYesNoEnter = false;
 
     // Profile selection
     profileBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         const index = parseInt(btn.getAttribute("data-index"), 10);
         this.handleProfileSelection(index, btn);
-
-        setTimeout(() => {
-          inYesNoSection = true;
-          allowYesNoEnter = false;
-          currentIndex = 1;
-          yesNoLabels[currentIndex].classList.add("focused");
-          yesNoLabels[currentIndex].focus();
-          setTimeout(() => (allowYesNoEnter = true), 200);
-        }, 100);
       });
     });
 
     // Yes/No buttons
     yesNoLabels.forEach((label, index) => {
       label.addEventListener("click", () => {
-        yesNoRadios[index].checked = true;
-        GameState.audio.play("yesNoSound");
-
         if (index === 0) {
           // Yes - refresh profile view
           this.show(game);
-        } else {
-          // No - return to profile selection
-          inYesNoSection = false;
-          currentIndex = 0;
-          profileBtns[currentIndex].classList.add("focused");
-          profileBtns[currentIndex].focus();
         }
+        // No does nothing but close the modal
       });
     });
 
     // Image preview
-    if (fileInput) {
+    if (fileInput && imagePreview) {
       fileInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -389,6 +323,10 @@ export class ProfileSelection {
         game.sceneManager.switchTo("levelMenu");
       });
     }
+
+    // Add NFT event listeners
+    this.addNFTEventListeners();
+    this.loadUserNFTs();
   }
 
   handleProfileSelection(index, btn) {
@@ -400,7 +338,7 @@ export class ProfileSelection {
     this.selectedProfileIndex = index;
 
     // Set the selected profile in game state
-    GameState.playerProfile.setProfile(this.profiles[index]);
+    playerProfileInstance.setProfile(this.profiles[index]);
 
     // Update UI to reflect selection
     document.querySelectorAll(".profile-img").forEach((img) => {
@@ -408,40 +346,42 @@ export class ProfileSelection {
     });
     btn.querySelector(".profile-img").classList.add("chosen");
 
-    GameState.audio.play("clickSound");
+    if (GameState.audio) {
+      GameState.audio.play("clickSound");
+    }
   }
 
   async handleCustomProfileSubmit(game) {
     const name = document.getElementById("profileName").value.trim();
     const desc = document.getElementById("profileDesc").value.trim();
     const fileInput = document.getElementById("profileImageInput");
-    const file = fileInput.files[0];
+    const file = fileInput?.files?.[0];
 
-    if (!file || !name || !desc) {
-      alert("Please fill in all fields and upload an image.");
+    if (!name) {
+      alert("Please enter a name for your profile.");
       return;
     }
 
-    this.showMessage("Creating profile on blockchain...", "Please wait", 0);
+    this.showMessage("Creating profile...", "Please wait", 0);
 
     try {
-      const imageUrl = await this.helpers.uploadToIPFS(file);
-      const result = await this.helpers.submitProfileToChain(
-        name,
-        desc,
-        imageUrl
-      );
+      let imageUrl = null;
+      if (file) {
+        imageUrl = await this.helpers.uploadToIPFS(file);
+      }
 
-      if (result?.status === "Success") {
+      const result = await this.helpers.createLocalProfileFromData(name, desc, imageUrl);
+
+      if (result.success) {
         this.show(game); // Refresh to show new profile
       } else {
-        throw new Error("Chain creation failed");
+        throw new Error("Profile creation failed");
       }
     } catch (error) {
       console.error("Profile creation failed:", error);
       this.showError(
         "Error",
-        "Failed to create profile on blockchain. Please try again."
+        "Failed to create profile. Please try again."
       );
     } finally {
       this.clearMessage();

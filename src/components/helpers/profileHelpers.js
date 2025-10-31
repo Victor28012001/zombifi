@@ -1,62 +1,39 @@
-import { client } from "../../utils/honeyCombServices.js";
-import * as web3 from "@solana/web3.js";
-import { sendTransactionForTests } from "@honeycomb-protocol/edge-client/client/helpers.js";
-import axios from "axios";
-import { getUserPublicKey } from "../../utils/walletState.js";
 import { GameState } from "../../core/GameState.js";
+import axios from "axios";
 
 export class ProfileHelpers {
   getDefaultAvatar() {
     return "https://www.arweave.net/qR_n1QvCaHqVTYFaTdnZoAXR6JBwWspDLtDNcLj2a5w?ext=png";
   }
 
-  formatPublicKey(publickey) {
-    return publickey && publickey.length >= 8
-      ? `${publickey.slice(0, 6)}...${publickey.slice(-4)}`
-      : "Connect Wallet";
+  formatHederaAccountId(accountId) {
+    return accountId && accountId.length >= 8
+      ? `${accountId.slice(0, 6)}...${accountId.slice(-4)}`
+      : "Connect Hedera Wallet";
   }
 
-  async fetchChainProfiles(publickey) {
-    const { user: usersArray } = await client.findUsers({
-      wallets: [publickey],
-      includeProof: true,
-    });
+  // Local profile management (no chain integration)
+  async fetchLocalProfiles() {
+    // For Hedera, we'll use local profiles or create from Hedera account
+    const savedProfile = localStorage.getItem('playerProfile');
+    if (savedProfile) {
+      const profileData = JSON.parse(savedProfile);
+      return [this.createLocalProfile(profileData)];
+    }
+    return [this.createDefaultProfile()];
+  }
 
-    if (!usersArray?.length) return [];
-
-    const { profile: profilesArray } = await client.findProfiles({
-      userIds: [usersArray[0].id],
-      includeProof: true,
-    });
-
-    if (!profilesArray?.length) return [];
-
-    return profilesArray.map((profile) => {
-      const profileInfo = profile.info || {};
-      const customData = profile.customData || {};
-      const platformData = profile.platformData || {};
-      const xpValue = platformData.xp ? parseInt(platformData.xp) : 0;
-      const stats = customData.stats
-        ? JSON.parse(customData.stats[0])
-        : this.getDefaultStats();
-        GameState.data = profile;
-
-      return {
-        name: profileInfo.name || "Unnamed",
-        description: profileInfo.bio || "",
-        image: profileInfo.pfp || this.getDefaultAvatar(),
-        chosen: false,
-        isChainProfile: true,
-        chainData: profile,
-        address: profile.address,
-        stats: stats,
-        xp: xpValue,
-        achievements: customData.achievements
-          ? JSON.parse(customData.achievements[0])
-          : [],
-        userId: profile.userId,
-      };
-    });
+  createLocalProfile(profileData) {
+    return {
+      name: profileData.info?.name || "Local Player",
+      description: profileData.info?.bio || "Local game profile",
+      image: profileData.info?.pfp || this.getDefaultAvatar(),
+      chosen: true,
+      isChainProfile: false,
+      stats: profileData.stats || this.getDefaultStats(),
+      xp: profileData.xp || 0,
+      achievements: profileData.achievements || [],
+    };
   }
 
   getDefaultStats() {
@@ -72,25 +49,17 @@ export class ProfileHelpers {
     };
   }
 
-  createDefaultProfile(publickey) {
+  createDefaultProfile() {
     return {
       name: "Default",
-      description: publickey
-        ? "Create your first profile"
-        : "Connect wallet to create profile",
+      description: "Create your game profile",
       image: this.getDefaultAvatar(),
       chosen: true,
       isChainProfile: false,
-      disabled: true,
+      disabled: false,
       xp: 0,
       achievements: [],
-      chainData: {
-        info: {
-          name: "Default",
-          bio: "",
-          pfp: this.getDefaultAvatar(),
-        },
-      },
+      stats: this.getDefaultStats()
     };
   }
 
@@ -107,9 +76,7 @@ export class ProfileHelpers {
   }
 
   createXPBadge(profile) {
-    return profile.isChainProfile
-      ? `<div class="xp-badge">${profile.xp} XP</div>`
-      : "";
+    return `<div class="xp-badge">${profile.xp} XP</div>`;
   }
 
   createTierBadge(tierInfo) {
@@ -155,45 +122,27 @@ export class ProfileHelpers {
     return `https://aquamarine-working-thrush-698.mypinata.cloud/ipfs/${ipfsHash}`;
   }
 
-  async submitProfileToChain(name, desc, imageUrl) {
-    const pub = getUserPublicKey();
-    if (!pub) throw new Error("Wallet not connected");
-
-    const projectAddress = import.meta.env.VITE_PROJECT_KEY;
-    const secret = JSON.parse(import.meta.env.VITE_ADMIN_KEY);
-
-    if (!Array.isArray(secret) || secret.length !== 64) {
-      throw new Error("Invalid admin key");
-    }
-
-    const adminKeyPair = web3.Keypair.fromSecretKey(new Uint8Array(secret));
-
-    const { createNewUserWithProfileTransaction: txResponse } =
-      await client.createNewUserWithProfileTransaction({
-        project: projectAddress.toString(),
-        wallet: pub.toString(),
-        payer: adminKeyPair.publicKey.toString(),
-        profileIdentity: "main",
-        userInfo: {
-          name: name,
-          bio: desc,
-          pfp: imageUrl,
-        },
-      });
-
-    return await sendTransactionForTests(
-      client,
-      {
-        blockhash: txResponse.blockhash,
-        lastValidBlockHeight: txResponse.lastValidBlockHeight,
-        transaction: txResponse.transaction,
+  // For Hedera, we'll create local profiles instead of on-chain
+  async createLocalProfileFromData(name, desc, imageUrl) {
+    const profileData = {
+      info: {
+        name: name,
+        bio: desc,
+        pfp: imageUrl || this.getDefaultAvatar(),
       },
-      [adminKeyPair],
-      {
-        skipPreflight: true,
-        commitment: "finalized",
-      }
-    );
+      stats: this.getDefaultStats(),
+      xp: 0,
+      achievements: [],
+      levelsClaimed: [],
+    };
+
+    // Save to localStorage
+    localStorage.setItem('playerProfile', JSON.stringify(profileData));
+    
+    return {
+      success: true,
+      profile: this.createLocalProfile(profileData)
+    };
   }
 
   showMessage(root, title, text, duration = 1500) {

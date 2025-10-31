@@ -31,6 +31,8 @@ export class Game {
     this.cutsceneFinished = false;
     this.isResetting = false;
     this.gameHud = new GameHUD();
+    this.hederaService = hederaNFTService;
+    this.nftRewardsEnabled = false;
   }
 
   isPaused() {
@@ -70,7 +72,13 @@ export class Game {
       await this.sceneManager.switchTo("splash");
 
       this.startGameLoop();
+      await this.hederaService.init();
+      this.nftRewardsEnabled = true;
+      
+      console.log("Hedera NFT service initialized");
     } catch (error) {
+      console.warn("Hedera NFT service initialization failed:", error);
+      this.nftRewardsEnabled = false;
       console.error("Game initialization failed:", error);
     }
   }
@@ -325,7 +333,43 @@ export class Game {
   }
 
   showGameWon() {
+    // Award NFT for level completion
+    if (this.nftRewardsEnabled && this.hederaService.isConnected()) {
+      try {
+        await this.hederaService.mintGameNFT(
+          "level_complete", 
+          this.calculateLevelScore(), 
+          this.currentLevel + 1
+        );
+      } catch (error) {
+        console.warn("Failed to mint level completion NFT:", error);
+      }
+    }
     this.ui.showGameWonPopup(this.renderer, () => this.showLevelMenu());
+  }
+
+  calculateLevelScore() {
+    // Implement your scoring logic
+    const timeBonus = Math.max(0, GameState.timer.remaining);
+    const accuracy = GameState.shotsHit / Math.max(1, GameState.shotsFired);
+    const enemiesDefeated = GameState.enemiesDefeated;
+    
+    return Math.floor(timeBonus * 10 + accuracy * 100 + enemiesDefeated * 50);
+  }
+
+  calculateTotalScore() {
+    // Calculate cumulative score across all levels
+    return Object.values(this.levelScores || {}).reduce((a, b) => a + b, 0);
+  }
+
+  async awardHighScoreNFT(highScore) {
+    if (this.nftRewardsEnabled && this.hederaService.isConnected()) {
+      try {
+        await this.hederaService.mintGameNFT("high_score", highScore);
+      } catch (error) {
+        console.warn("Failed to mint high score NFT:", error);
+      }
+    }
   }
 
   showLevelMenu() {
@@ -347,6 +391,18 @@ export class Game {
     if (nextLevel < this.levelManager.totalLevels) {
       this.unlockedLevels = Math.max(this.unlockedLevels, nextLevel + 1);
       localStorage.setItem("unlockedLevels", this.unlockedLevels);
+
+      // Award NFT for completing all levels
+      if (nextLevel === this.levelManager.totalLevels - 1 && this.nftRewardsEnabled) {
+        try {
+          await this.hederaService.mintGameNFT(
+            "all_levels",
+            this.calculateTotalScore()
+          );
+        } catch (error) {
+          console.warn("Failed to mint completionist NFT:", error);
+        }
+      }
     }
   }
 
