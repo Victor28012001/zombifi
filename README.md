@@ -175,6 +175,9 @@ Feel free to open issues, submit pull requests, or propose new missions and stor
 # Certification link
 https://claim.hashgraphdev.com/certification?oneTimeCode=05d887c0-9534-11f0-8004-731714d16728
 
+# Pitch Link
+https://www.canva.com/design/DAG3YXqBHAM/cypks8dfLgdqosHPSN9onw/view?utm_content=DAG3YXqBHAM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha6c76f3f0e
+
 🧱 Built For
 
 The Hedera Game Jam — showcasing how narrative-driven web3 games can use Hedera NFTs to create permanent, player-owned stories.
