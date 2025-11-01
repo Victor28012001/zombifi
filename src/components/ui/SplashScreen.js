@@ -40,7 +40,7 @@ export class SplashScreen {
     return `
       <div id="splashScreen" class="splash-screen">
         <div id="splashContent" class="splash-content">
-          <h1>Bring Back Gladys</h1>
+          <h1>Zombifi</h1>
           <p id="paragraph">Loading assets...</p>
           <div id="loadingBarContainer" class="loading-bar-container">
             <div id="loadingProgress" class="loading-progress"></div>

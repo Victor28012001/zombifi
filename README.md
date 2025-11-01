@@ -1,5 +1,5 @@
 # zombifi
-🧟‍♂️ Bring Back Gladys
+🧟‍♂️ zombifi
 
 A horror FPS RPG where you venture through a sinister medical facility to save your daughter, Gladys, from a nightmare experiment gone wrong. Face terrifying mutated zombies, uncover secrets, and complete missions recorded permanently on Hedera through NFTs that capture your progress, assets, and achievements.
 
@@ -11,7 +11,7 @@ https://github.com/Victor28012001/zombifi
 
 🎯 Game Concept
 
-In Bring Back Gladys, you play as a desperate father navigating an 8-floor medical research facility, where an experiment has turned staff and test subjects into deadly mutants — Lurkers and Screamers.
+In zombifi, you play as a desperate father navigating an 8-floor medical research facility, where an experiment has turned staff and test subjects into deadly mutants — Lurkers and Screamers.
 
 Your mission: save Gladys and survive by collecting critical test samples, completing objectives, and battling horrors that lurk in the dark.
 
@@ -184,5 +184,5 @@ The Hedera Game Jam — showcasing how narrative-driven web3 games can use Heder
 
 🧠 Summary
 
-Bring Back Gladys fuses horror storytelling, FPS survival gameplay, and blockchain permanence into one emotional experience.
+zombifi fuses horror storytelling, FPS survival gameplay, and blockchain permanence into one emotional experience.
 Every fight, choice, and achievement is recorded forever on Hedera — turning your journey into a digital legacy.

@@ -26,7 +26,7 @@ export class MainMenu {
         </video>
 
         <div class="main-menu-overlay">
-          <h1 class="game-title">Bring Back Gladys</h1>
+          <h1 class="game-title">Zombifi</h1>
 
           <div class="main-buttons">
             <div class="menu-button">
