@@ -16,6 +16,7 @@ import { CutsceneScene } from "../scenes/CutsceneScene.js";
 import { cutDoorHole, updateTimerDisplay } from "../utils/utils.js";
 import { ControlsSystem } from "../systems/ControlsSystem.js";
 import { GameHUD } from "../components/ui/GameHUD.js";
+import { HederaNFTService } from "../utils/hederaNFTService.js";
 
 export class Game {
   constructor() {
@@ -31,7 +32,7 @@ export class Game {
     this.cutsceneFinished = false;
     this.isResetting = false;
     this.gameHud = new GameHUD();
-    this.hederaService = hederaNFTService;
+    this.hederaService = new HederaNFTService();
     this.nftRewardsEnabled = false;
   }
 
@@ -332,7 +333,7 @@ export class Game {
     await this.sceneManager.switchTo(levelSceneId, { levelIndex });
   }
 
-  showGameWon() {
+  async showGameWon() {
     // Award NFT for level completion
     if (this.nftRewardsEnabled && this.hederaService.isConnected()) {
       try {
@@ -386,7 +387,7 @@ export class Game {
     this.showLevelMenu();
   }
 
-  unlockNextLevel() {
+  async unlockNextLevel() {
     const nextLevel = this.currentLevel + 1;
     if (nextLevel < this.levelManager.totalLevels) {
       this.unlockedLevels = Math.max(this.unlockedLevels, nextLevel + 1);

@@ -21,8 +21,8 @@ const TOKEN_ID = TokenId.fromString(import.meta.env.VITE_HEDERA_TOKEN_ID);
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const metadata = {
-  name: "Your Game Name",
-  description: "NFT Rewards for Game Achievements",
+  name: "Zombifi",
+  description: "A Zombified Game that uses NFT to Reward Players for Game Achievements",
   url: window.location.origin,
   icons: [window.location.origin + "/icon.png"],
 };
@@ -50,11 +50,11 @@ export class HederaNFTService {
 
       await this.connector.init({ logger: "error" });
       this.isInitialized = true;
-      
+
       // Check if already connected
       this.signer = this.connector.signers?.[0];
       this.accountId = this.signer?.getAccountId()?.toString() || null;
-      
+
       if (this.accountId) {
         window.currentWallet = { accountId: this.accountId };
       }
@@ -75,23 +75,30 @@ export class HederaNFTService {
       return null;
     }
 
-    // Wait for connection
-    for (let i = 0; i < 10; i++) {
-      this.signer = this.connector.signers?.[0];
-      if (this.signer) break;
-      await new Promise((r) => setTimeout(r, 300));
-    }
+    // Wait for signer to be available (up to 10s)
+    await new Promise((resolve, reject) => {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        this.signer = this.connector.signers?.[0];
+        if (this.signer) {
+          this.accountId = this.signer.getAccountId().toString();
+          window.currentWallet = { accountId: this.accountId };
+          console.log("Connected wallet:", this.accountId);
 
-    this.accountId = this.signer?.getAccountId()?.toString() || null;
-    if (this.accountId) {
-      window.currentWallet = { accountId: this.accountId };
-      console.log("Connected wallet:", this.accountId);
-      
-      // Dispatch event for other parts of the game
-      window.dispatchEvent(new CustomEvent('hedera-wallet-connected', {
-        detail: { accountId: this.accountId }
-      }));
-    }
+          window.dispatchEvent(
+            new CustomEvent("hedera-wallet-connected", {
+              detail: { accountId: this.accountId },
+            })
+          );
+          clearInterval(interval);
+          resolve();
+        } else if (++attempts > 33) {
+          // 33 * 300ms ~ 10s
+          clearInterval(interval);
+          reject(new Error("Failed to get signer within 10s"));
+        }
+      }, 300);
+    });
 
     return this.accountId;
   }
@@ -102,12 +109,12 @@ export class HederaNFTService {
     } catch (e) {
       console.warn("Disconnect error:", e.message || e);
     }
-    
+
     this.signer = null;
     this.accountId = null;
     window.currentWallet = null;
-    
-    window.dispatchEvent(new CustomEvent('hedera-wallet-disconnected'));
+
+    window.dispatchEvent(new CustomEvent("hedera-wallet-disconnected"));
     return true;
   }
 
@@ -139,24 +146,35 @@ export class HederaNFTService {
   }
 
   async mintGameNFT(achievementType, score, level = null, additionalData = {}) {
-    if (!this.signer) {
-      throw new Error("Wallet not connected. Please connect your Hedera wallet first.");
+    // Validate wallet connection
+    if (!this.signer || !this.accountId) {
+      throw new Error(
+        "Wallet not connected or accountId is undefined. Call connectWallet() first."
+      );
+    }
+
+    // Extra sanity check: make sure accountId is valid Hedera ID
+    if (!/^\d+\.\d+\.\d+$/.test(this.accountId)) {
+      throw new Error(`Invalid Hedera accountId: ${this.accountId}`);
     }
 
     try {
-      // Request association if needed
+      // Request token association if needed
       await this.requestAssociation();
 
-      // Convert Hedera account ID to solidity address for the backend
-      const receiverAddress = AccountId.fromString(this.accountId).toSolidityAddress();
-      
-      // Call your existing backend API to mint NFT
-      const response = await fetch(`${API_URL}/api/mint-nft/${receiverAddress}`, {
-        method: "GET", // Your backend uses GET for this endpoint
-        headers: {
-          "Content-Type": "application/json",
+      // Convert Hedera account ID to solidity address
+      const receiverAddress = AccountId.fromString(
+        this.accountId
+      ).toSolidityAddress();
+
+      // Call backend API to mint NFT
+      const response = await fetch(
+        `${API_URL}/api/mint-nft/${receiverAddress}`,
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
         }
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -166,12 +184,6 @@ export class HederaNFTService {
       const result = await response.json();
       console.log("NFT Minted:", result);
 
-      // Submit score to leaderboard (optional)
-      if (score > 0) {
-        await this.submitScore(this.accountId, score);
-      }
-
-      // Show success message in game
       this.showNFTMintedMessage(achievementType, result.serial);
 
       return result;
@@ -181,50 +193,14 @@ export class HederaNFTService {
     }
   }
 
-  async submitScore(accountId, score) {
-    try {
-      const response = await fetch(`${API_URL}/score`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          accountId: accountId,
-          score: score,
-          name: accountId, // Using accountId as name since your backend expects it
-        }),
-      });
-
-      const result = await response.json();
-      
-      if (result.success && result.madeLeaderboard) {
-        this.showLeaderboardMessage(result.leaders);
-      }
-      
-      return result;
-    } catch (error) {
-      console.error("Error submitting score:", error);
-      return { success: false, error: "Network error" };
-    }
-  }
-
-  async getLeaderboard() {
-    try {
-      const response = await fetch(`${API_URL}/leader`);
-      if (!response.ok) throw new Error("Failed to fetch leaderboard");
-      return await response.json();
-    } catch (error) {
-      console.error("Error fetching leaderboard:", error);
-      return [];
-    }
-  }
-
   async getUserNFTs() {
     if (!this.accountId) return [];
 
     try {
       const res = await fetch(
-        `https://testnet.mirrornode.hedera.com/api/v1/accounts/${this.accountId}/nfts?limit=20&order=desc&token.id=${TOKEN_ID.toString()}`
+        `https://testnet.mirrornode.hedera.com/api/v1/accounts/${
+          this.accountId
+        }/nfts?limit=20&order=desc&token.id=${TOKEN_ID.toString()}`
       );
 
       if (!res.ok) return [];
@@ -273,7 +249,7 @@ export class HederaNFTService {
   }
 
   showNFTMintedMessage(achievementType, serialNumber) {
-    const message = document.createElement('div');
+    const message = document.createElement("div");
     message.style.cssText = `
       position: fixed;
       top: 20px;
@@ -287,10 +263,12 @@ export class HederaNFTService {
       animation: slideIn 0.5s ease-out;
       max-width: 300px;
     `;
-    
+
     message.innerHTML = `
       <h3 style="margin: 0 0 5px 0;">🎉 NFT Minted!</h3>
-      <p style="margin: 0; font-size: 0.9em;">Achievement: ${this.formatAchievementType(achievementType)}</p>
+      <p style="margin: 0; font-size: 0.9em;">Achievement: ${this.formatAchievementType(
+        achievementType
+      )}</p>
       <p style="margin: 0; font-size: 0.8em; opacity: 0.8;">Serial: #${serialNumber}</p>
     `;
 
@@ -298,40 +276,7 @@ export class HederaNFTService {
 
     // Remove after 5 seconds
     setTimeout(() => {
-      message.style.animation = 'slideOut 0.5s ease-in';
-      setTimeout(() => {
-        if (message.parentNode) {
-          message.parentNode.removeChild(message);
-        }
-      }, 500);
-    }, 5000);
-  }
-
-  showLeaderboardMessage(leaders) {
-    const message = document.createElement('div');
-    message.style.cssText = `
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
-      padding: 15px 20px;
-      border-radius: 10px;
-      z-index: 10000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s ease-out;
-      max-width: 300px;
-    `;
-    
-    message.innerHTML = `
-      <h3 style="margin: 0 0 10px 0;">🏆 New High Score!</h3>
-      <p style="margin: 0; font-size: 0.9em;">You made the leaderboard!</p>
-    `;
-
-    document.body.appendChild(message);
-
-    setTimeout(() => {
-      message.style.animation = 'slideOut 0.5s ease-in';
+      message.style.animation = "slideOut 0.5s ease-in";
       setTimeout(() => {
         if (message.parentNode) {
           message.parentNode.removeChild(message);
@@ -342,11 +287,11 @@ export class HederaNFTService {
 
   formatAchievementType(type) {
     const types = {
-      'level_complete': 'Level Completed',
-      'high_score': 'High Score',
-      'all_levels': 'Game Master',
-      'tier_upgrade': 'Tier Upgrade',
-      'achievement': 'Special Achievement'
+      level_complete: "Level Completed",
+      high_score: "High Score",
+      all_levels: "Game Master",
+      tier_upgrade: "Tier Upgrade",
+      achievement: "Special Achievement",
     };
     return types[type] || type;
   }
@@ -361,9 +306,9 @@ export class HederaNFTService {
 }
 
 // Add CSS for animations
-if (!document.querySelector('#hedera-nft-styles')) {
-  const style = document.createElement('style');
-  style.id = 'hedera-nft-styles';
+if (!document.querySelector("#hedera-nft-styles")) {
+  const style = document.createElement("style");
+  style.id = "hedera-nft-styles";
   style.textContent = `
     @keyframes slideIn {
       from {

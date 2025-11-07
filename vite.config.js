@@ -21,8 +21,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: [
-      "@metaplex-foundation/umi",
-      "@metaplex-foundation/umi-bundle-defaults",
       "buffer"
     ],
     esbuildOptions: {
