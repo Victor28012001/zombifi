@@ -5,6 +5,8 @@ import "./polyfills.js";
 import { Game } from "./core/Game.js";
 import { SceneTransition } from "./core/SceneTransition.js";
 import { GameState } from "./core/GameState.js";
+import { Buffer } from "buffer";
+window.Buffer = Buffer;
 // import { mountCivicAuth } from "./utils/CivicAuthMount.jsx";
 
 const game = new Game();
