@@ -14,6 +14,7 @@
     "test-mint": "node scripts/testMint.js"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "@types/three": "^0.180.0",
     "solc": "^0.8.30",
     "three-stdlib": "^2.36.0",
