@@ -12,19 +12,18 @@ export default defineConfig({
     target: "es2020",
     rollupOptions: {
       plugins: [
-        // Full Node polyfills for Rollup phase
-        nodePolyfills(),
+        nodePolyfills(), // adds Buffer, process, crypto, etc. to Rollup
       ],
     },
     commonjsOptions: {
-      transformMixedEsModules: true, // Helps forge-light and other mixed modules
+      transformMixedEsModules: true,
     },
   },
 
   define: {
     global: "globalThis",
     "process.env.NODE_DEBUG": "false",
-    "process.env": {}, // ensure process.env exists at runtime
+    "process.env": {}, // prevent undefined process.env in the browser
   },
 
   optimizeDeps: {
@@ -52,12 +51,12 @@ export default defineConfig({
 
   resolve: {
     alias: {
-      // Force Vite to use browser-friendly versions
+      // Ensure these point to browser-safe shims
       crypto: "crypto-browserify",
       stream: "stream-browserify",
       assert: "assert-browserify",
-      buffer: "buffer",
-      util: "util",
+      buffer: "buffer/",
+      util: "util/",
       process: "process/browser",
     },
   },
